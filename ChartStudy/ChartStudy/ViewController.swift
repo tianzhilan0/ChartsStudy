@@ -17,9 +17,15 @@ struct ListModel {
 
 class ViewController: UIViewController {
     
-    private var dataArray = [ListModel(title: "折线图（LCLineChartViewController）",
-                                    subtitle: "一个简单的linechart演示一个简单的linechart演示一个简单的linechart演示一个简单的linechart演示一个简单的linechart演示一个简单的linechart演示一个简单的linechart演示一个简单的linechart演示一个简单的linechart演示一个简单的linechart演示一个简单的linechart演示",
-                                    class: LCLineChartViewController.self)]
+    private var dataArray = [ListModel(title: "折线图（单条）",
+                                    subtitle: "实现折线图，动画处理，渐变填充，缩放，校准",
+                                    class: LCLineChartViewController.self),
+                             ListModel(title: "折线图（多条）",
+                                       subtitle: "实现多条折线图，动画处理，渐变填充，缩放，校准",
+                                       class: LCMoreLineChartViewController.self),
+                             ListModel(title: "柱状图",
+                                       subtitle: "实现多条折线图，动画处理，渐变填充，缩放，校准",
+                                       class: LCMoreLineChartViewController.self)]
     
     
     override func viewDidLoad() {

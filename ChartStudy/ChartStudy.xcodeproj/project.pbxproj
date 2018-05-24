@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2B2DFF93CB75EF8663D32EC8 /* Pods_ChartStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FBD67271411E4E05CF7C34 /* Pods_ChartStudy.framework */; };
+		4B43B45620B6AD8F0079B6AB /* LCBalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43B45520B6AD8F0079B6AB /* LCBalloonMarker.swift */; };
+		4B43B45820B6AF7C0079B6AB /* LCMoreLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43B45720B6AF7C0079B6AB /* LCMoreLineChartViewController.swift */; };
+		4B43B45A20B6B5680079B6AB /* LCBarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43B45920B6B5680079B6AB /* LCBarChartViewController.swift */; };
 		4BCAB47720B3E3C700508600 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCAB47620B3E3C700508600 /* AppDelegate.swift */; };
 		4BCAB47920B3E3C700508600 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCAB47820B3E3C700508600 /* ViewController.swift */; };
 		4BCAB47C20B3E3C700508600 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BCAB47A20B3E3C700508600 /* Main.storyboard */; };
@@ -39,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		0DDEAF155CB526169C418108 /* Pods-ChartStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChartStudy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChartStudy/Pods-ChartStudy.debug.xcconfig"; sourceTree = "<group>"; };
+		4B43B45520B6AD8F0079B6AB /* LCBalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCBalloonMarker.swift; sourceTree = "<group>"; };
+		4B43B45720B6AF7C0079B6AB /* LCMoreLineChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCMoreLineChartViewController.swift; sourceTree = "<group>"; };
+		4B43B45920B6B5680079B6AB /* LCBarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCBarChartViewController.swift; sourceTree = "<group>"; };
 		4BCAB47320B3E3C700508600 /* ChartStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChartStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BCAB47620B3E3C700508600 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BCAB47820B3E3C700508600 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B43B45420B6AD790079B6AB /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				4B43B45520B6AD8F0079B6AB /* LCBalloonMarker.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
 		4BCAB46A20B3E3C700508600 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +129,9 @@
 				4BCAB4A620B3ECCE00508600 /* ListTableViewCell.swift */,
 				4BCAB4A820B414C900508600 /* LCAlertViewController.swift */,
 				4BCAB4A420B3E72500508600 /* LCLineChartViewController.swift */,
+				4B43B45720B6AF7C0079B6AB /* LCMoreLineChartViewController.swift */,
+				4B43B45920B6B5680079B6AB /* LCBarChartViewController.swift */,
+				4B43B45420B6AD790079B6AB /* Commons */,
 				4BCAB47A20B3E3C700508600 /* Main.storyboard */,
 				4BCAB47D20B3E3C800508600 /* Assets.xcassets */,
 				4BCAB47F20B3E3C800508600 /* LaunchScreen.storyboard */,
@@ -348,10 +365,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B43B45820B6AF7C0079B6AB /* LCMoreLineChartViewController.swift in Sources */,
+				4B43B45620B6AD8F0079B6AB /* LCBalloonMarker.swift in Sources */,
 				4BCAB47920B3E3C700508600 /* ViewController.swift in Sources */,
 				4BCAB4A920B414C900508600 /* LCAlertViewController.swift in Sources */,
 				4BCAB4A720B3ECCE00508600 /* ListTableViewCell.swift in Sources */,
 				4BCAB4A520B3E72500508600 /* LCLineChartViewController.swift in Sources */,
+				4B43B45A20B6B5680079B6AB /* LCBarChartViewController.swift in Sources */,
 				4BCAB47720B3E3C700508600 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

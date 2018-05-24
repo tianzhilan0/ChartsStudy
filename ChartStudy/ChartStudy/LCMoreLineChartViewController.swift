@@ -1,24 +1,25 @@
 //
-//  LCLineChartViewController.swift
+//  LCMoreLineChartViewController.swift
 //  ChartStudy
 //
-//  Created by LC on 2018/5/22.
+//  Created by LC on 2018/5/24.
 //  Copyright © 2018年 LC. All rights reserved.
 //
 
 import UIKit
 import Charts
 
-class LCLineChartViewController: UIViewController {
-    
+class LCMoreLineChartViewController: UIViewController {
+
     fileprivate var lineChartView = LineChartView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(clickRightItem))
         self.view.backgroundColor = UIColor.white
         
-        self.title = "折线图（单条）"
+        self.title = "折线图（多条）"
         
         self.view.addSubview(lineChartView)
         lineChartView.snp.makeConstraints { (make) in
@@ -37,7 +38,7 @@ class LCLineChartViewController: UIViewController {
         lineChartView.dragEnabled = true
         //启用缩放收拾
         lineChartView.setScaleEnabled(true)
-
+        
         //X轴 缩放倍数
         lineChartView.viewPortHandler.setMaximumScaleX(2)
         //Y轴 缩放倍数
@@ -104,12 +105,8 @@ class LCLineChartViewController: UIViewController {
         
         //左侧轴 虚线样式
         leftAxis.gridLineDashLengths = [5, 5]
-        //左侧轴 虚线是否展示
+        //X轴 虚线是否展示
         leftAxis.drawGridLinesEnabled = true
-        //左侧轴 值得范围
-        leftAxis.axisMaximum = 200
-        leftAxis.axisMinimum = -50
-        
         //左侧轴 限制线
         let leftLimitLine = ChartLimitLine(limit: 30, label: "限制线")
         leftLimitLine.lineWidth = 2.0
@@ -119,6 +116,8 @@ class LCLineChartViewController: UIViewController {
         leftLimitLine.valueTextColor = UIColor.yellow
         leftAxis.addLimitLine(leftLimitLine)
         
+//        leftAxis.axisMaximum = 400
+//        leftAxis.axisMinimum = 0
         //X轴 设置限制线绘制在柱形图的后面
         leftAxis.drawLimitLinesBehindDataEnabled = false
         
@@ -154,83 +153,79 @@ class LCLineChartViewController: UIViewController {
         
         //提醒浮框
         let marker = LCBalloonMarker(color: UIColor(white: 51/255, alpha: 0.5),
-                                   font: .systemFont(ofSize: 12),
-                                   textColor: .white,
-                                   insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))
+                                     font: .systemFont(ofSize: 12),
+                                     textColor: .white,
+                                     insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))
         marker.chartView = lineChartView
         marker.minimumSize = CGSize(width: 50, height: 40)
         lineChartView.marker = marker
         
-
+        
         self.updateChartData()
         
         lineChartView.animate(xAxisDuration: 2.5)
         
     }
     
-    
     func updateChartData() {
         
-        self.setDataCount(Int(45), range: UInt32(100))
+        self.setDataCount(Int(20), range: UInt32(60))
     }
     
     func setDataCount(_ count: Int, range: UInt32) {
-        let values = (0..<count).map { (i) -> ChartDataEntry in
-            let val = Double(arc4random_uniform(range) + 3)
-            if i%2 == 1{
-                //折线 交叉点加图标
-                return ChartDataEntry(x: Double(i), y: val, icon: UIImage(named: "star"))
-            }else{
-                return ChartDataEntry(x: Double(i), y: val)
-            }
+        let yVals1 = (0..<count).map { (i) -> ChartDataEntry in
+            let mult = range / 2
+            let val = Double(arc4random_uniform(mult) + 50)
+            return ChartDataEntry(x: Double(i), y: val)
+        }
+        let yVals2 = (0..<count).map { (i) -> ChartDataEntry in
+            let val = Double(arc4random_uniform(range) + 150)
+            return ChartDataEntry(x: Double(i), y: val)
+        }
+        let yVals3 = (0..<count).map { (i) -> ChartDataEntry in
+            let val = Double(arc4random_uniform(range) + 250)
+            return ChartDataEntry(x: Double(i), y: val)
         }
         
-        let set1 = LineChartDataSet(values: values, label: "消费额")
-        //折线 线宽
-        set1.lineWidth = 1
-        //折线 线的颜色
-        set1.setColor(.black)
-        //折线 线的样式
-        set1.lineDashLengths = [5, 2.5]
-        //折线 是否添加图标
-        set1.drawIconsEnabled = true
+        let set1 = LineChartDataSet(values: yVals1, label: "DataSet 1")
+        set1.axisDependency = .left
+        set1.setColor(UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1))
+        set1.setCircleColor(.white)
+        set1.lineWidth = 2
+        set1.circleRadius = 3
+        set1.fillAlpha = 65/255
+        set1.fillColor = UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1)
+        set1.highlightColor = UIColor(red: 244/255, green: 117/255, blue: 117/255, alpha: 1)
+        set1.drawCircleHoleEnabled = false
         
-        //校准线
-        set1.highlightLineDashLengths = [5, 5]
-        set1.highlightColor = UIColor.red
+        let set2 = LineChartDataSet(values: yVals2, label: "DataSet 2")
+        set2.axisDependency = .left
+        set2.setColor(.red)
+        set2.setCircleColor(.white)
+        set2.lineWidth = 2
+        set2.circleRadius = 3
+        set2.fillAlpha = 65/255
+        set2.fillColor = .red
+        set2.highlightColor = UIColor(red: 244/255, green: 117/255, blue: 117/255, alpha: 1)
+        set2.drawCircleHoleEnabled = false
         
-        //折线 圆的颜色 外
-        set1.circleRadius = 6
-        set1.setCircleColor(.brown)
-        set1.drawCirclesEnabled = true
-        //折线 圆的颜色 内
-        set1.circleHoleRadius = 3
-        set1.circleHoleColor = .brown
-        set1.drawCircleHoleEnabled = true
+        let set3 = LineChartDataSet(values: yVals3, label: "DataSet 3")
+        set3.axisDependency = .left
+        set3.setColor(.yellow)
+        set3.setCircleColor(.white)
+        set3.lineWidth = 2
+        set3.circleRadius = 3
+        set3.fillAlpha = 65/255
+        set3.fillColor = UIColor.yellow.withAlphaComponent(200/255)
+        set3.highlightColor = UIColor(red: 244/255, green: 117/255, blue: 117/255, alpha: 1)
+        set3.drawCircleHoleEnabled = false
         
-        set1.valueFont = .systemFont(ofSize: 9)
-        
-        //折线 对应的图例样式
-        set1.formLineDashLengths = [5, 2.5]
-        set1.formLineWidth = 2
-        set1.formSize = 15
-        
-        //折线 填充
-        let gradientColors = [ChartColorTemplates.colorFromString("#00ff0000").cgColor,
-                              ChartColorTemplates.colorFromString("#ffff0000").cgColor]
-        let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
-        //折线 填充透明度
-        set1.fillAlpha = 1
-        //折线 填充颜色
-        set1.fill = Fill(linearGradient: gradient, angle: 90) //.linearGradient(gradient, angle: 90)
-        //折线 是否显示填充
-        set1.drawFilledEnabled = true
-        
-        let data = LineChartData(dataSet: set1)
+        let data = LineChartData(dataSets: [set1, set2, set3])
+        data.setValueTextColor(.red)
+        data.setValueFont(.systemFont(ofSize: 9))
         
         lineChartView.data = data
     }
-    
     
     @objc func clickRightItem() {
         
