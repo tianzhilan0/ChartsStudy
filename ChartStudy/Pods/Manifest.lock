@@ -1,0 +1,17 @@
+PODS:
+  - Charts (3.1.1):
+    - Charts/Core (= 3.1.1)
+  - Charts/Core (3.1.1)
+  - SnapKit (4.0.0)
+
+DEPENDENCIES:
+  - Charts
+  - SnapKit (~> 4.0.0)
+
+SPEC CHECKSUMS:
+  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+
+PODFILE CHECKSUM: 5742f874aac17f32ab25e4ee2c5dfab0e4619721
+
+COCOAPODS: 1.4.0
