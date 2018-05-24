@@ -1,0 +1,6 @@
+framework module Pods_LCLayer {
+  umbrella header "Pods-LCLayer-umbrella.h"
+
+  export *
+  module * { export * }
+}
